@@ -4,7 +4,11 @@ import { source } from "@/lib/source";
 
 export default function Layout({ children }: LayoutProps<"/">) {
   return (
-    <DocsLayout tree={source.pageTree} {...baseOptions()}>
+    <DocsLayout
+      tree={source.pageTree}
+      {...baseOptions()}
+      githubUrl="https://github.com/bentsignal/qbe"
+    >
       {children}
     </DocsLayout>
   );
