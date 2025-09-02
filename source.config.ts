@@ -3,7 +3,10 @@ import {
   defineDocs,
   frontmatterSchema,
   metaSchema,
-} from 'fumadocs-mdx/config';
+} from "fumadocs-mdx/config";
+import { remarkAutoTypeTable, createGenerator } from "fumadocs-typescript";
+
+const generator = createGenerator();
 
 // You can customise Zod schemas for frontmatter and `meta.json` here
 // see https://fumadocs.dev/docs/mdx/collections#define-docs
@@ -19,5 +22,6 @@ export const docs = defineDocs({
 export default defineConfig({
   mdxOptions: {
     // MDX options
+    remarkPlugins: [[remarkAutoTypeTable, { generator }]],
   },
 });

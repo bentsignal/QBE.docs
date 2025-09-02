@@ -1,0 +1,43 @@
+---
+title: Setting up authentication
+description: Configuring authentication with Clerk
+---
+
+## Overview
+
+This project is configured to use Clerk for authentication. If any of the directions below appear outdated, refer to the offical documentation provided by Clerk & Convex.
+
+<Cards>
+  <Card
+    title="Next.js Clerk Quickstart"
+    href="https://clerk.com/docs/quickstarts/nextjs"
+  />
+  <Card
+    title="Convex Clerk Quickstart"
+    href="https://docs.convex.dev/auth/clerk"
+  />
+</Cards>
+
+## Setup
+
+1. Login or sign up for a [Clerk](https://clerk.com/) account
+2. Create a new project. The custom auth components in the app are only configured to use Google SSO out of the box, but can be modified to use whatever you'd like.
+3. One you've created your project, go to Configure -> API Keys in the Clerk dashboard. From there you'll need to grab all of the API Keys and environment variables
+   necessary for both the Next.js app and Convex. For information on applying environment variables, refer to [the environment variables section](/getting-started/init-env).
+
+### Next.js
+
+```
+CLERK_SECRET_KEY=<your-secret-key>
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your-publishable-key>
+NEXT_PUBLIC_CLERK_FRONTEND_API_URL=<your-frontend-api-url>
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+```
+
+### Convex
+
+```
+CLERK_WEBHOOK_SECRET=<your-webhook-secret>
+CLERK_FRONTEND_API_URL=<your-frontend-api-url>
+```
