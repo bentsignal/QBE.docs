@@ -21,23 +21,48 @@ This project is configured to use Clerk for authentication. If you run into any 
 ## Setup
 
 1. Login or sign up for a [Clerk](https://clerk.com/) account
-2. Create a new project. The custom auth components in the app are only configured to use Google SSO out of the box, but can be modified to use whatever you'd like.
-3. One you've created your project, go to Configure -> API Keys in the Clerk dashboard. From there you'll need to grab all of the API Keys and environment variables
-   necessary for both Next.js and Convex. For information on applying environment variables, refer to [the environment variables section](/getting-started/env).
+2. Create a new project.
 
-### Next.js
+   _Note_: The custom auth components in the app are only configured to use Google SSO out of the box, but can be modified to use whatever you'd like.
 
-```
-CLERK_SECRET_KEY=<your-secret-key>
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your-publishable-key>
-NEXT_PUBLIC_CLERK_FRONTEND_API_URL=<your-frontend-api-url>
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-```
+3. Create a new JWT Template
 
-### Convex
+   - Navigate to the **JWT Templates** section and create a new template. Use the Convex preset, and do not make any changes.
 
-```
-CLERK_WEBHOOK_SECRET=<your-webhook-secret>
-CLERK_FRONTEND_API_URL=<your-frontend-api-url>
-```
+4. Create a new Webhook
+
+   1. Grab your convex HTTP actions URL from the Convex dashboard
+
+      `Settings -> URL & Deploy Key`
+
+   2. In the Clerk dashboard, go to
+
+      `Configure -> Webhooks -> Add endpoint`
+
+   3. Create a new endpoint:
+      - URL: `<your-convex-http-actions-url>/clerk/events`
+      - Event type
+        - user.created
+   4. Grab the signing secret from Clerk, and set it in the Convex environment variables.
+      ```bash
+      CLERK_WEBHOOK_SECRET=<your-webhook-secret>
+      ```
+
+5. Now we just need to grab the remaining API Keys and environment variables necessary for both Next.js and Convex. For information on applying
+   environment variables, refer to [the environment variables section](/getting-started/env).
+
+   ### Next.js
+
+   ```
+   CLERK_SECRET_KEY=<your-secret-key>
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your-publishable-key>
+   NEXT_PUBLIC_CLERK_FRONTEND_API_URL=<your-frontend-api-url>
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/login
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   ```
+
+   ### Convex
+
+   ```
+   CLERK_FRONTEND_API_URL=<your-frontend-api-url>
+   ```
