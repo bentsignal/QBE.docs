@@ -7,7 +7,7 @@ export default function Layout({ children }: LayoutProps<"/">) {
     <DocsLayout
       tree={source.pageTree}
       {...baseOptions()}
-      githubUrl="https://github.com/bentsignal/qbe"
+      githubUrl="https://github.com/bentsignal/hmmm"
     >
       {children}
     </DocsLayout>
